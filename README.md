@@ -63,8 +63,8 @@ El nombre de la estación admite cualquier valor como string y el color debe ser
 
 ``` python
 {"type":"div","name":<NAME>,"ramif": [
-    {"type":"ram", "name":<NAME>,"ram":[ESTACIÓN]},
-    {"type":"ram", "name":<NAME>,"ram":[ESTACIÓN, ESTACIÓN]}
+    {"type":"ram", "name":<NAME>,"ram":[ESTACION]},
+    {"type":"ram", "name":<NAME>,"ram":[ESTACION, ESTACION]}
 ]
 ```
 Como se puede ver, la división es un iterable de ramificaciones y su propósito es marcar qué grupo de ramificaciones debe compararse.
