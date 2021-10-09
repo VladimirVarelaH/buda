@@ -228,6 +228,8 @@ Para terminar, el tren buscará la ruta más corta y eliminará la que no lo sea
 }
 ```
 
+En el caso de que el programa no encuentre una ruta más corta que las demás entregará en el nombre de la ramificación **none** y value contendrá la cantidad mínima de detenciones.
+
 
 
 ### Entrega de los resultados
