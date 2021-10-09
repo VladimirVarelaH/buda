@@ -1,6 +1,6 @@
 # Red de metro
 
-[TOC]
+
 
 Para este proyecto se solicitó por parte del equipo de Buda que se desarrolle un programa al cual se le entregue una red de metro, con estaciones de diferentes colores y ramificaciones, como se muestra en la imagen a continuación:
 
