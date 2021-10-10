@@ -230,7 +230,8 @@ Para terminar, el tren buscará la ruta más corta y eliminará la que no lo sea
 
 En el caso de que el programa no encuentre una ruta más corta que las demás entregará en el nombre de la ramificación **none** y value contendrá la cantidad mínima de detenciones.
 
-
+### Uso del programa
+Ya sea desde el archivo `generate_json.py` o directamente en `red.JSON` se debe introducir la red a recorrer, luego se debe ejecutar el archivo `main.py` y seguir las instrucciones en la consola.
 
 ### Entrega de los resultados
 
@@ -246,3 +247,5 @@ Para el tren con color none la ruta mas corta en la division ram_1, es la ramifi
 ## Testing
 
 Para ejecutar las pruebas del código se debe ejecutar el comando `py -m doctest test.txt`, estando en la carpeta donde se encuentre el programa y teniendo Python instalado.
+
+
