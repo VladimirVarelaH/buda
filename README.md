@@ -1,6 +1,6 @@
 # Red de Metro
 
-Al ejecutar el programa, el mismó modtrará el progreso en la consola, utilizando para esto datos de ejemplo. Si los datos de ejemplo se quieren modificar hay información más detallada en le sección de **Para personalizar la red**, presente más abajo.
+Al ejecutar el programa (con el archivo `main.py`), el mismó modtrará el progreso en la consola, utilizando para esto datos de ejemplo. Si los datos de ejemplo se quieren modificar hay información más detallada en le sección de **Para personalizar la red**, presente más abajo.
 
 ## Funcionamiento general
 
