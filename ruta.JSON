@@ -1,56 +1,56 @@
 {
      "red": [
           {
-               "type": "estacion",
+               "tipo": "estacion",
                "estacion": "A",
                "color": "none"
           },
           {
-               "type": "estacion",
+               "tipo": "estacion",
                "estacion": "B",
                "color": "none"
           },
           {
-               "type": "estacion",
+               "tipo": "estacion",
                "estacion": "C",
                "color": "none"
           },
           {
-               "type": "div",
-               "name": "ram_1",
-               "ramif": [
+               "tipo": "division",
+               "name": "split_1",
+               "ramificaciones": [
                     {
-                         "type": "ram",
-                         "name": "ram_1_1",
-                         "ram": [
+                         "tipo": "ramal",
+                         "name": "ram_1",
+                         "estaciones": [
                               {
-                                   "type": "estacion",
+                                   "tipo": "estacion",
                                    "estacion": "D",
                                    "color": "none"
                               },
                               {
-                                   "type": "estacion",
+                                   "tipo": "estacion",
                                    "estacion": "E",
                                    "color": "none"
                               }
                          ]
                     },
                     {
-                         "type": "ram",
-                         "name": "ram_1_2",
-                         "ram": [
+                         "tipo": "ramal",
+                         "name": "ram_2",
+                         "estaciones": [
                               {
-                                   "type": "estacion",
+                                   "tipo": "estacion",
                                    "estacion": "G",
                                    "color": "verde"
                               },
                               {
-                                   "type": "estacion",
+                                   "tipo": "estacion",
                                    "estacion": "H",
                                    "color": "rojo"
                               },
                               {
-                                   "type": "estacion",
+                                   "tipo": "estacion",
                                    "estacion": "I",
                                    "color": "verde"
                               }
@@ -59,7 +59,7 @@
                ]
           },
           {
-               "type": "estacion",
+               "tipo": "estacion",
                "estacion": "F",
                "color": "none"
           }

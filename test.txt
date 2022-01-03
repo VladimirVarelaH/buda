@@ -1,48 +1,51 @@
-testeo de la funcion recorer red
+TESTEO DE LA FUNCION RECORRER RED
 Con division:
 >>> from module import recorerRed
->>> tren={'color': 'none','path':0,'max':0,'divs':[]}
->>> red =[{'type': 'estacion', 'estacion': 'B', 'color': 'none'}, {'type': 'estacion', 'estacion': 'C', 'color': 'none'}, {'type': 'div', 'name': 'ram_1', 'ramif': [{'type': 'ram', 'name': 'ram_1_1', 'ram': [{'type': 'estacion', 'estacion': 'D', 'color': 'none'}, {'type': 'estacion', 'estacion': 'E', 'color': 'none'}]}, {'type': 'ram', 'name': 'ram_1_2', 'ram': [{'type': 'estacion', 'estacion': 'G', 'color': 'verde'}, {'type': 'estacion', 'estacion': 'H', 'color': 'rojo'}, {'type': 'estacion', 'estacion': 'I', 'color': 'verde'}]}]}, {'type': 'estacion', 'name': 'ram_2', 'estacion': 'F', 'color': 'none'}]
+>>> tren={'color': 'none','path':0,'max':0}
+>>> red =[{'tipo': 'estacion', 'estacion': 'B', 'color': 'none'}, {'tipo': 'estacion', 'estacion': 'C', 'color': 'none'}, {'tipo': 'division', 'name': 'ram_1', 'ramificaciones': [{'tipo': 'ramal', 'name': 'ram_1_1', 'estaciones': [{'tipo': 'estacion', 'estacion': 'D', 'color': 'none'}, {'tipo': 'estacion', 'estacion': 'E', 'color': 'none'}]}, {'tipo': 'ramal', 'name': 'ram_1_2', 'estaciones': [{'tipo': 'estacion', 'estacion': 'G', 'color': 'verde'}, {'tipo': 'estacion', 'estacion': 'H', 'color': 'rojo'}, {'tipo': 'estacion', 'estacion': 'I', 'color': 'verde'}]}]}, {'tipo': 'estacion', 'estacion': 'F', 'color': 'none'}]
 >>> recorerRed(tren, red)
-{'color': 'none', 'path': 3, 'max': 3, 'divs': [{'name': 'ram_1', 'rams': [{'name': 'ram_1_1', 'value': 2}, {'name': 'ram_1_2', 'value': 3}]}]}
+{'color': 'none', 'path': 3, 'max': 3, 'divisiones': [{'name': 'ram_1', 'ramales': [{'name': 'ram_1_1', 'value': 2}, {'name': 'ram_1_2', 'value': 3}]}]}
 
 Sin division:
->>> tren={'color': 'none','path':0,'max':0,'divs':[]}
->>> red =[{'type': 'estacion', 'estacion': 'B', 'color': 'none'}, {'type': 'estacion', 'estacion': 'C', 'color': 'none'}, {'type': 'estacion', 'estacion': 'D', 'color': 'none'}, {'type': 'estacion', 'estacion': 'E', 'color': 'none'}, {'type': 'estacion', 'estacion': 'I', 'color': 'verde'}, {'type': 'estacion', 'estacion': 'F', 'color': 'none'}]
+>>> tren={'color': 'none','path':0,'max':0}
+>>> red =[{'tipo': 'estacion', 'estacion': 'B', 'color': 'none'}, {'tipo': 'estacion', 'estacion': 'C', 'color': 'none'}, {'tipo': 'estacion', 'estacion': 'D', 'color': 'none'}, {'tipo': 'estacion', 'estacion': 'E', 'color': 'none'}, {'tipo': 'estacion', 'estacion': 'I', 'color': 'verde'}, {'tipo': 'estacion', 'estacion': 'F', 'color': 'none'}]
 >>> recorerRed(tren, red)
-{'color': 'none', 'path': 6, 'max': 0, 'divs': []}
+{'color': 'none', 'path': 6, 'max': 0, 'divisiones': []}
 
-Testeo de la funcion para buscar la ruta más corta
+TESTEO DE LA FUNCION BUSCAR RUTA
 Con ruta más corta
 >>> from module import buscarRuta
->>> tren={'color':'none','path':4, 'max':3,'divs':[{'name': 'ram_1', 'rams': [{'name': 'ram_1_1', 'value': 2}, {'name': 'ram_1_2', 'value': 3}]}]}
+>>> tren={'color':'none','path':4, 'max':3,'divisiones':[{'name': 'ram_1', 'ramales': [{'name': 'ram_1_1', 'value': 2}, {'name': 'ram_1_2', 'value': 3}]}]}
 >>> buscarRuta(tren)
-{'color': 'none', 'path': 4, 'max': 3, 'divs': [{'name': 'ram_1', 'rams': {'name': 'ram_1_1', 'value': 2}}]}
+{'color': 'none', 'path': 4, 'max': 3, 'divisiones': [{'name': 'ram_1', 'ramales': {'name': 'ram_1_1', 'value': 2}}]}
 
 Con dos rutas igual de cortas
->>> tren={'color':'none','path':4, 'max':3,'divs':[{'name': 'ram_1', 'rams': [{'name': 'ram_1_1', 'value': 2}, {'name': 'ram_1_2', 'value': 2}]}]}
+>>> tren={'color':'none','path':4, 'max':3,'divisiones':[{'name': 'ram_1', 'ramales': [{'name': 'ram_1_1', 'value': 2}, {'name': 'ram_1_2', 'value': 2}]}]}
 >>> buscarRuta(tren)
-{'color': 'none', 'path': 4, 'max': 3, 'divs': [{'name': 'ram_1', 'rams': {'name': 'none', 'value': 2}}]}
+{'color': 'none', 'path': 4, 'max': 3, 'divisiones': [{'name': 'ram_1', 'ramales': {'name': 'none', 'value': 2}}]}
 
 Con una ruta más larga y dos igual de cortas
->>> tren={'color':'none','path':4, 'max':3,'divs':[{'name': 'ram_1', 'rams': [{'name': 'ram_1_1', 'value': 2}, {'name': 'ram_1_2', 'value': 3}, {'name': 'ram_1_3', 'value': 2}]}]}
+>>> tren={'color':'none','path':4, 'max':3,'divisiones':[{'name': 'ram_1', 'ramales': [{'name': 'ram_1_1', 'value': 2}, {'name': 'ram_1_2', 'value': 3}, {'name': 'ram_1_3', 'value': 2}]}]}
 >>> buscarRuta(tren)
-{'color': 'none', 'path': 4, 'max': 3, 'divs': [{'name': 'ram_1', 'rams': {'name': 'none', 'value': 2}}]}
+{'color': 'none', 'path': 4, 'max': 3, 'divisiones': [{'name': 'ram_1', 'ramales': {'name': 'none', 'value': 2}}]}
 
->>> tren={'color':'none','path':4, 'max':3,'divs':[{'name': 'ram_1', 'rams': [{'name': 'ram_1_1', 'value': 3}, {'name': 'ram_1_2', 'value': 2}, {'name': 'ram_1_3', 'value': 2}]}]}
+>>> tren={'color':'none','path':4, 'max':3,'divisiones':[{'name': 'ram_1', 'ramales': [{'name': 'ram_1_1', 'value': 3}, {'name': 'ram_1_2', 'value': 2}, {'name': 'ram_1_3', 'value': 2}]}]}
 >>> buscarRuta(tren)
-{'color': 'none', 'path': 4, 'max': 3, 'divs': [{'name': 'ram_1', 'rams': {'name': 'none', 'value': 2}}]}
+{'color': 'none', 'path': 4, 'max': 3, 'divisiones': [{'name': 'ram_1', 'ramales': {'name': 'none', 'value': 2}}]}
 
->>> tren={'color':'none','path':4, 'max':3,'divs':[{'name': 'ram_1', 'rams': [{'name': 'ram_1_1', 'value': 2}, {'name': 'ram_1_2', 'value': 2}, {'name': 'ram_1_3', 'value': 3}]}]}
+>>> tren={'color':'none','path':4, 'max':3,'divisiones':[{'name': 'ram_1', 'ramales': [{'name': 'ram_1_1', 'value': 2}, {'name': 'ram_1_2', 'value': 2}, {'name': 'ram_1_3', 'value': 3}]}]}
 >>> buscarRuta(tren)
-{'color': 'none', 'path': 4, 'max': 3, 'divs': [{'name': 'ram_1', 'rams': {'name': 'none', 'value': 2}}]}
+{'color': 'none', 'path': 4, 'max': 3, 'divisiones': [{'name': 'ram_1', 'ramales': {'name': 'none', 'value': 2}}]}
 
+TESTEO DE LA FUNCION ARMAR RES
 >>> from module import armarRes
->>> tren = {'color': 'none', 'path': 4, 'max': 3, 'divs': [{'name': 'ram_1', 'rams': {'name': 'none', 'value': 2}}]}
+>>> tren = {'color': 'none', 'path': 4, 'max': 3, 'divisiones': [{'name': 'ram_1', 'ramales': {'name': 'none', 'value': 2}}]}
 >>> armarRes(tren)
 '# Resultado\nPara el tren con color none la ruta mas corta en la division ram_1, es la ramificacion none con 2 detenciones;  y la ruta obligatoria cuenta con 4 detenciones'
 
+TESTEO DE LA FUNCION GET COLORS
 >>> from module import getColors
->>> red = [{'type': 'estacion', 'estacion': 'B', 'color': 'none'}, {'type': 'estacion', 'estacion': 'C', 'color': 'none'}, {'type': 'div', 'name': 'ram_1', 'ramif': [{'type': 'ram', 'name': 'ram_1_1', 'ram': [{'type': 'estacion', 'estacion': 'D', 'color': 'azul'}, {'type': 'estacion', 'estacion': 'E', 'color': 'none'}]}, {'type': 'ram', 'name': 'ram_1_2', 'ram': [{'type': 'estacion', 'estacion': 'G', 'color': 'verde'}, {'type': 'estacion', 'estacion': 'H', 'color': 'rojo'}, {'type': 'estacion', 'estacion': 'I', 'color': 'verde'}]}]}, {'type': 'estacion', 'estacion': 'F', 'color': 'none'}]
+>>> red = [{'tipo': 'estacion', 'estacion': 'B', 'color': 'none'}, {'tipo': 'estacion', 'estacion': 'C', 'color': 'none'}, {'tipo': 'division', 'name': 'ram_1', 'ramificaciones': [{'tipo': 'ramal', 'name': 'ram_1_1', 'estaciones': [{'tipo': 'estacion', 'estacion': 'D', 'color': 'azul'}, {'tipo': 'estacion', 'estacion': 'E', 'color': 'none'}]}, {'tipo': 'ramal', 'name': 'ram_1_2', 'estaciones': [{'tipo': 'estacion', 'estacion': 'G', 'color': 'verde'}, {'tipo': 'estacion', 'estacion': 'H', 'color': 'rojo'}, {'tipo': 'estacion', 'estacion': 'I', 'color': 'verde'}]}]}, {'tipo': 'estacion', 'estacion': 'F', 'color': 'none'}]
 >>> getColors(red)
 ' none azul verde rojo'
+

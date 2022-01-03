@@ -1,14 +1,14 @@
 def getColors(red):
     colors = ""
     for i in red:
-        if i['type']=='estacion':
+        if i['tipo']=='estacion':
             if i['color'] in colors:
                 pass
             else:
                 colors += ' '+i['color']
-        elif i['type']=='div':
-            for j in i['ramif']:
-                for k in j['ram']:
+        elif i['tipo']=='division':
+            for j in i['ramificaciones']:
+                for k in j['estaciones']:
                     if (k['color'] in colors):
                         pass
                     else:
@@ -17,59 +17,60 @@ def getColors(red):
     return colors
 
 def recorerRed(tren, red):
+    tren['divisiones'] = []
+    #Crea los espacios para sumar las ramificaciones
     for i in red:
-        if i['type']=='div':
-            div = {"name":i['name'], "rams":[]}
-            tren['divs'].append(div)
-            for j in i['ramif']:
-                tren['divs'][len(tren['divs'])-1]['rams'].append({"name":j['name'],"value":0})
+        if i['tipo']=='division':
+            div = {"name":i['name'], "ramales":[]}
+            #añade la division en la red al tren
+            tren['divisiones'].append(div)
+            for estacion in i['ramificaciones']:
+                #añade los ramales de la división para sumar las detenciones
+                tren['divisiones'][len(tren['divisiones'])-1]['ramales'].append({"name":estacion['name'],"value":0})
 
     #Recorre la red y las divisiones en la misma, sumando las estaciones obligatorias al path
     for i in red:
-        if (i['type']=='estacion'):
+        if (i['tipo']=='estacion'):
             # Si el color de la estación y el tren son la misma se detiene
+            # Si el tren no tiene color, se detiene
+            # Si la estación no tiene color, se detiene
             if i['color'] == tren['color'] or i['color']=='none' or tren['color'] == 'none':
                 tren['path'] += 1
 
-        elif(i['type']=='div'):
-            for j in i['ramif']:
-                for k in j['ram']:
-                    if k['color']!='none' and  k['color'] == tren['color'] or k['color']=='none':
-                        for l in tren["divs"]:
-                            for m in l['rams']:
-                                if m['name'] == j['name']:
-                                    m['value']+=1
-                                    if m['value']>tren['max']:
-                                        tren['max'] = m['value']
-                    elif tren['color'] == 'none':
-                        for l in tren["divs"]:
-                            for m in l['rams']:
-                                if m['name'] == j['name']:
-                                    m['value']+=1
-                                    if m['value']>tren['max']:
-                                        tren['max'] = m['value']
+        elif(i['tipo']=='division'):
+            for ramal in i['ramificaciones']:
+                for estacion in ramal['estaciones']:
+                    if tren['color'] == 'none' or  estacion['color'] == tren['color'] or estacion['color']=='none':
+                        #Se comprueba a qué ramal corresponde la parada y suma uno
+                        for division in tren["divisiones"]:
+                            for ramificacion in division['ramales']:
+                                if ramificacion['name'] == ramal['name']:
+                                    ramificacion['value']+=1
+                                    #Se verifica si este ramal es el que tiene más detenciones, de ser así se establece como máximo
+                                    if ramificacion['value']>tren['max']:
+                                        tren['max'] = ramificacion['value']
 
     return(tren)
 
 def buscarRuta(tren):
     count = 0
-    for i in tren['divs']:
+    for div in tren['divisiones']:
         count +=1
         maxi = tren['max']
-        for j in i['rams']:
+        for j in div['ramales']:
             if maxi > j['value']:
                 maxi = j['value']
-                tren['divs'][count-1]['rams'] = {"name":j['name'],"value":j['value']}
+                tren['divisiones'][count-1]['ramales'] = {"name":j['name'],"value":j['value']}
             elif maxi == j['value']:
-                tren['divs'][count-1]['rams'] = {"name":"none","value":j['value']}
-                j == len(i['rams'])+1
+                tren['divisiones'][count-1]['ramales'] = {"name":"none","value":j['value']}
+                j == len(div['ramales'])+1
 
     return tren
 
 def armarRes(tren):
     respuesta = ""
-    for i in tren['divs']:
-        respuesta += f"la ruta mas corta en la division {i['name']}, es la ramificacion {i['rams']['name']} con {i['rams']['value']} detenciones; "
+    for i in tren['divisiones']:
+        respuesta += f"la ruta mas corta en la division {i['name']}, es la ramificacion {i['ramales']['name']} con {i['ramales']['value']} detenciones; "
 
     respuesta = f"Para el tren con color {tren['color']} "+respuesta+f" y la ruta obligatoria cuenta con {tren['path']} detenciones"
     respuesta = "# Resultado\n"+respuesta
