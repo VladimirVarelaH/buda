@@ -51,5 +51,5 @@ red = [
 Si se quiere modificar la red, se puede hacer en el archivo `generate_json.py`, aunque el programa podría modificarse de manera sencilla para funcionar como una API.
 
 ## Testing
-Para ejecutar las pruebas del código se debe ejecutar el comando `py -m doctest test.txt`, estando en la carpeta donde se encuentre el programa y teniendo Python instalado.  
+Para ejecutar las pruebas del código se debe ejecutar el comando `python -m doctest test.txt` en la consola, estando en la carpeta donde se encuentre el programa y teniendo Python instalado.  
 Si el test es exitoso, no se verá ningún mensaje en la consola. Si por el contrario falla, aparecerá información sobre el error obtenido, la respuesta esperada y la obtenida.
