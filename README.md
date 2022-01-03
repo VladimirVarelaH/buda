@@ -1,8 +1,9 @@
 # Red de Metro
 
+Al ejecutar el programa, el mismó modtrará el progreso en la consola, utilizando para esto datos de ejemplo. Si los datos de ejemplo se quieren modificar hay información más detallada en le sección de **Para personalizar la red**, presente más abajo.
+
 ## Funcionamiento general
-En este proyecto se buscó facilitar la lectura del código y la modificación del mismo.  
-El funcionamiento más básico sería el siguiente:
+
 1) EL programa inicia con una red, este es un objeto iterable (específicamente un array) que contiene diccionarios.
 Estos diccionarios pueden representar uno de tres tipos de objetos:
 * **Estaciones**: Puntos en la red en los que el tren puede parar o no.
